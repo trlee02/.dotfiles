@@ -21,6 +21,7 @@ plugins+=(
   zsh-syntax-highlighting
   zsh-nvm
   dirhistory
+  vi-mode
 )
 
 source $ZSH/oh-my-zsh.sh
