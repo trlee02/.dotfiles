@@ -15,3 +15,5 @@ This directory contains dotfiles for my personal setup.
 
 ## TODO
 - [ ] Add installation script for dependencies.
+- [ ]   oh-my-zsh plugins
+- [ ]   packer
