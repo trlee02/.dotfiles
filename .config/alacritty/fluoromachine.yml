@@ -1,0 +1,75 @@
+# Fluoromachine theme for Alacritty
+colors:
+  # Default colors
+  primary:
+    foreground: '#8BA7A7'
+    background: '#262335'
+    dim_foreground: '#495495'
+    bright_foreground: 'None'
+  cursor:
+    text: '#282a36'
+    cursor: '#8BA7A7'
+  vi_mode_cursor:
+    text: '#282a36'
+    cursor: '#8BA7A7'
+  selection:
+    text: 'CellBackground'
+    background: '#463465'
+  search:
+    matches:
+      foreground: '#181818'
+      background: '#61E2FF'
+    focused_match:
+      foreground: '#181818'
+      background: '#FFCC00'
+  hints:
+    start:
+      foreground: '#181818'
+      background: '#61E2FF'
+    end:
+      foreground: '#181818'
+      background: '#ff8b39'
+  line_indicator:
+    foreground: 'None'
+    background: 'None'
+  footer_bar:
+    foreground: '#181818'
+    background: '#8BA7A7'
+
+  # Normal colors
+  normal:
+    black: '#262335'
+    red: '#fe4450'
+    green: '#72f1b8'
+    yellow: '#FFCC00'
+    blue: '#61E2FF'
+    magenta: '#FC199A'
+    cyan: '#61E2FF'
+    white: '#8BA7A7'
+
+  # Bright colors
+  bright:
+    black: '#463465'
+    red: '#ff8b39'
+    green: '#72f1b8'
+    yellow: '#FFCC00'
+    blue: '#61E2FF'
+    magenta: '#AF6DF9'
+    cyan: '#61E2FF'
+    white: '#8BA7A7'
+
+  # Dim colors
+  dim:
+    black: '#0f0f0f'
+    red: '#712b2b'
+    green: '#5f6f3a'
+    yellow: '#a17e4d'
+    blue: '#456877'
+    magenta: '#704d68'
+    cyan: '#4d7770'
+    white: '#8e8e8e'
+
+  indexed_colors: []
+  transparent_background_colors: false
+  draw_bold_text_with_bright_colors: true
+
