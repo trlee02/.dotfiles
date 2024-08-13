@@ -45,7 +45,13 @@ alias suggest="gh copilot suggest"
 alias sdn="shutdown now"
 alias cl="clear"
 alias east='tools/docker/elpis/build.bash scons ecu=east config=r1x'
+alias west='tools/docker/elpis/build.bash scons ecu=west config=r1s_enduro'
+alias south='tools/docker/elpis/build.bash scons ecu=south config=r1x'
 alias tristan-gh="eval \$(ssh-agent -s) && ssh-add ~/.ssh/tristan_ed25519"
+alias scvenv="source venv/bin/activate"
+alias hermes="cd $HOME/Documents/hermes/ && scvenv && python hermes.py"
+alias scfw="source $HOME/Documents/firmware/venv/bin/activate"
+alias perf="cd $HOME/Documents/firmware/tools/rai_performance_timer/ && scfw"
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
