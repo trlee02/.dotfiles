@@ -447,7 +447,7 @@ format-packetloss = <animation-packetloss> <label-connected>
 ;   %mac%       [wireless+wired] (New in version 3.6.0)
 
 ; Default: %ifname% %local_ip%
-label-connected = %essid%  %downspeed:5%
+label-connected = %essid% 
 ;label-connected-foreground = #eefafa
 
 ; Default: (none)
@@ -745,7 +745,7 @@ type = custom/script
 interval = 1
 format-prefix = " "
 format = <label>
-exec = python3 /home/tristan/scripts/spotify_status.py -f '{song}: {artist}' -t 15
+exec = python3 "$HOME/.config/polybar/spotify_status.py" -f '{song}: {artist}' -t 15
 format-underline = #1db954
 ;control players (optional)
 click-left = playerctl --player=spotify play-pause 

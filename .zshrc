@@ -9,7 +9,7 @@ fi
 # zmodload zsh/zprof
 export ZSH="$HOME/.oh-my-zsh"
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="false"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
@@ -19,7 +19,6 @@ export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim')
 plugins+=(
   git
   zsh-syntax-highlighting
-  zsh-nvm
   dirhistory
   vi-mode
 )
@@ -29,10 +28,9 @@ source $ZSH/oh-my-zsh.sh
 setopt autocd extendedglob nomatch
 
 # eval "$(starship init zsh)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(zoxide init zsh)"
 
-export EDITOR='/home/linuxbrew/.linuxbrew/bin/nvim'
+export EDITOR='/usr/bin/nvim'
 
 # if nvim is built from source
 # export PATH="/home/tristan/Applications/nvim-linux64/bin:$PATH"
@@ -48,9 +46,8 @@ alias sdn="shutdown now"
 
 # eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# zprof
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
