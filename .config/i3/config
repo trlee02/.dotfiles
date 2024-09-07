@@ -200,18 +200,14 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 bindsym Print exec --no-startup-id flameshot gui
 
 for_window [class="Arandr"] floating enable
-set $mode_display Config displays - Riv both (mod+b), Riv monitor (mod+m), SanPablo (mod+s), laptop (l)
+set $mode_display Config displays - Home both (b), laptop (l)
 set $path_display_laptop "$HOME/.config/i3/display_rivian_laptop_only.sh"
-set $path_display_riv_monitor "$HOME/.config/i3/display_rivian_monitor_only.sh"
-set $path_display_riv_both "$HOME/.config/i3/display_rivian_both.sh"
-set $path_display_sanpablo_both "$HOME/.config/i3/display_sanpablo_both.sh"
+set $path_display_home "$HOME/.config/i3/display_newton_both.sh"
 
 
 mode "$mode_display" {
     bindsym l exec $path_display_laptop
-    bindsym $mod+b exec $path_display_riv_both
-    bindsym $mod+m exec $path_display_riv_monitor
-    bindsym $mod+s exec $path_display_sanpablo_both
+    bindsym b exec $path_display_home
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
