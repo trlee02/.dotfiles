@@ -34,7 +34,7 @@ alert = #bd2c40
 ; inlay_hint = '#8C57C7'
 
 [bar/bar1]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:}
 width = 90%
 height = 21
 offset-x = 5%
