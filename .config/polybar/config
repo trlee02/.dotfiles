@@ -67,7 +67,7 @@ font-3 = "BlexMono Nerd Font:size=10;2"
 
 modules-left = i3 xwindow
 modules-center = date
-modules-right = spotify network-msi battery-msi mail updates pulseaudio memory2 cpu2 
+modules-right = spotify network-msi network-wired battery-msi mail updates pulseaudio memory2 cpu2 
 
 tray-position = none
 tray-padding = 2
@@ -473,6 +473,28 @@ animation-packetloss-1 = ⚠
 animation-packetloss-1-foreground = #000000
 ; Framerate in milliseconds
 animation-packetloss-framerate = 500
+
+[module/network-wired]
+type = internal/network
+interface = enp61s0
+interface-type = wired
+interval = 3.0
+accumulate-stats = true
+unknown-as-up = true
+speed-unit = ''
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected = <label-connected>
+
+format-disconnected = <label-disconnected>
+format-packetloss = <animation-packetloss> <label-connected>
+label-connected = %linkspeed%  󰈀
+label-connected-foreground = #cf93e9
+
+; Default: (none)
+label-disconnected = 
+label-disconnected-foreground = #66ffff
 
 [module/date]
 type = internal/date
