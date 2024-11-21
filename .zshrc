@@ -11,14 +11,14 @@ export ZSH="$HOME/.oh-my-zsh"
 # Uncomment the following line to enable command auto-correction.
 ENABLE_CORRECTION="false"
 
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 export NVM_LAZY_LOAD=true
 export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim')
 
 plugins+=(
   git
-  zsh-syntax-highlighting
+  # zsh-syntax-highlighting
   dirhistory
   vi-mode
 )
@@ -51,3 +51,5 @@ source <(fzf --zsh)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source /home/tristan/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

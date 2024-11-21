@@ -1,4 +1,3 @@
-import = ["/home/tristan/.config/alacritty/fluoromachine.toml"]
 
 [font]
 size = 7.5
@@ -8,3 +7,6 @@ family = "Blex Mono Nerd Font"
 
 [window]
 opacity = 0.85
+
+[general]
+import = ["/home/tristan/.config/alacritty/fluoromachine.toml"]

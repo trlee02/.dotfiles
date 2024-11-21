@@ -191,7 +191,7 @@ bindsym $mod+r mode "resize"
 gaps inner 10
 gaps top 21
 exec_always feh --bg-fill "/home/$USER/.dotfiles/backgrounds/snow_dunes.jpg"
-exec_always --no-startup-id picom
+exec_always --no-startup-id picom -b --backend glx
 
 # Start polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
