@@ -15,12 +15,18 @@ This directory contains dotfiles for my personal setup.
 
 ## TODO
 - [ ] Add installation script for dependencies.
-- [ ]   oh-my-zsh plugins
+    - [ ] oh-my-zsh plugins
+- [ ] picom
 - [ ] Font installations
-- [ ] zoxide
 - [ ] p10k config
-- [ ] set background
+- [x] set background
 - [ ] Arch install scripts
-- [ ] fzf
-- [ ] ripgrep
 - [ ] nvim copilot
+- [ ] Arch packages
+    - [ ] zoxide
+    - [ ] Zathura
+    - [ ] fzf
+    - [ ] ripgrep
+    - [ ] polybar
+    - [ ] alacritty
+    - [ ] pulseaudio

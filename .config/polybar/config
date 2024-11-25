@@ -67,7 +67,7 @@ font-3 = "BlexMono Nerd Font:size=10;2"
 
 modules-left = i3 xwindow
 modules-center = date
-modules-right = spotify network-msi network-wired battery-msi mail updates pulseaudio memory2 cpu2 
+modules-right = network-msi network-wired battery-msi mail updates pulseaudio memory2 cpu2 
 
 tray-position = none
 tray-padding = 2

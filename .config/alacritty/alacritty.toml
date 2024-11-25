@@ -1,4 +1,3 @@
-
 [font]
 size = 7.5
 
@@ -10,3 +9,6 @@ opacity = 0.85
 
 [general]
 import = ["/home/tristan/.config/alacritty/fluoromachine.toml"]
+
+[env]
+WINIT_X11_SCALE_FACTOR = "1.4"
