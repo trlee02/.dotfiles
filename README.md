@@ -18,6 +18,8 @@ This directory contains dotfiles for my personal setup.
     - [ ] oh-my-zsh plugins
 - [ ] picom
 - [ ] Font installations
+    - [ ] Blex mono nf
+    - [ ] meslo nf (p10k)
 - [ ] p10k config
 - [x] set background
 - [ ] Arch install scripts
