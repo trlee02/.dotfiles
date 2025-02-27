@@ -3,7 +3,7 @@
 background = #262335
 background-alt = #463465
 ;foreground = ${xrdb:color7:#222}
-foreground = #8BA7A7
+foreground = #ffd9d9
 primary = #AF6DF9
 secondary = #61E2FF
 alert = #bd2c40
@@ -36,10 +36,10 @@ alert = #bd2c40
 [bar/bar1]
 monitor = ${env:MONITOR:}
 width = 90%
-height = 21
+height = 32
 offset-x = 5%
 offset-y = 0.5%
-radius = 5.0
+radius = 10.0
 fixed-center = true
 bottom = false
 separator = |
@@ -59,15 +59,15 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = "BlexMono Nerd Font:size=10;2"
+font-0 = "BlexMono Nerd Font:size=14;3"
 ;font-1 = BlexMono Nerd Font:style=Regular:pixelsize=10;1
 font-1 = "FontAwesome:size=13;4"
-font-2 = "BlexMono Nerd Font:size=10;2"
-font-3 = "BlexMono Nerd Font:size=10;2"
+font-2 = "BlexMono Nerd Font:size=12;2"
+font-3 = "BlexMono Nerd Font:size=12;2"
 
 modules-left = i3 xwindow
 modules-center = date
-modules-right = network-msi network-wired battery-msi mail updates pulseaudio memory2 cpu2 
+modules-right = network-msi network-wired battery-msi pulseaudio memory2 cpu2 
 
 tray-position = none
 tray-padding = 2
@@ -77,13 +77,6 @@ tray-padding = 2
 wm-restack = i3
 
 override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
-
 cursor-click = pointer
 cursor-scroll = ns-resize
 
@@ -395,59 +388,18 @@ ramp-free-7 = █
 type = internal/network
 ; interfaces on your machine with `ip link`
 ; Wireless interfaces often start with `wl` and ethernet interface with `eno` or `eth`
-interface = wlo1
+interface = wlp0s20f3
 
 interface-type = wireless
 
-interval = 3.0
-
-; Accumulate values from all interfaces
-; when querying for up/downspeed rate
-; Default: false
-accumulate-stats = true
-
-; Consider an `UNKNOWN` interface state as up.
-; Some devices like USB network adapters have 
-; an unknown state, even when they're running
-; Default: false
+interval = 2.0
 unknown-as-up = true
 
-; The unit used for displaying network speeds
-; For example if set to the empty string, a speed of 5 KB/s is displayed as 5 K
-; Default: B/s
-; New in version 3.6.0
 speed-unit = ''
-
-; Available tags:
-;   <label-connected> (default)
-;   <ramp-signal>
-format-connected = <ramp-signal> <label-connected>
-
-; Available tags:
-;   <label-disconnected> (default)
+format-connected =  <label-connected>
 format-disconnected = <label-disconnected>
-
-; Used when connected, but ping fails (see ping-interval)
-; Available tags:
-;   <label-connected> (default)
-;   <label-packetloss>
-;   <animation-packetloss>
-format-packetloss = <animation-packetloss> <label-connected>
-
-; All labels support the following tokens:
-;   %ifname%    [wireless+wired]
-;   %local_ip%  [wireless+wired]
-;   %local_ip6% [wireless+wired]
-;   %essid%     [wireless]
-;   %signal%    [wireless]
-;   %upspeed%   [wireless+wired]
-;   %downspeed% [wireless+wired]
-;   %netspeed%  [wireless+wired] (%upspeed% + %downspeed%) (New in version 3.6.0)
-;   %linkspeed% [wired]
-;   %mac%       [wireless+wired] (New in version 3.6.0)
-
-; Default: %ifname% %local_ip%
-label-connected = %essid% 
+format-packetloss = <label-packetloss> <label-connected>
+label-connected = %essid% %signal%
 ;label-connected-foreground = #eefafa
 
 ; Default: (none)
@@ -455,36 +407,18 @@ label-disconnected = 󰤮
 label-disconnected-foreground = #66ffff
 
 ; Default: (none)
-;label-packetloss = %essid%
-;label-packetloss-foreground = #eefafafa
-
-; Only applies if <ramp-signal> is used
-ramp-signal-0 = 󰤟
-ramp-signal-1 = 󰤟
-ramp-signal-2 = 󰤢
-ramp-signal-3 = 󰤥
-ramp-signal-4 = 󰤥
-ramp-signal-5 = 󰤨
-                
-; Only applies if <animation-packetloss> is used
-animation-packetloss-0 = ⚠
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1 = ⚠
-animation-packetloss-1-foreground = #000000
-; Framerate in milliseconds
-animation-packetloss-framerate = 500
+label-packetloss = %essid%
+label-packetloss-foreground = #eefafafa
 
 [module/network-wired]
 type = internal/network
+; will need to change this with dongle
 interface = enp61s0
 interface-type = wired
 interval = 3.0
 accumulate-stats = true
 unknown-as-up = true
 speed-unit = ''
-; Available tags:
-;   <label-connected> (default)
-;   <ramp-signal>
 format-connected = <label-connected>
 
 format-disconnected = <label-disconnected>
@@ -560,159 +494,19 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/battery-msi]
 type = internal/battery
-
-; This is useful in case the battery never reports 100% charge
-; Default: 100
 full-at = 99
-
-; format-low once this charge percentage is reached
-; Default: 10
-; New in version 3.6.0
 low-at = 5
 
 ; Use the following command to list batteries and adapters:
 ; $ ls -1 /sys/class/power_supply/
-battery = BAT1
-adapter = ADP1
-
-; If an inotify event haven't been reported in this many
-; seconds, manually poll for new values.
-;
-; Needed as a fallback for systems that don't report events
-; on sysfs/procfs.
-;
-; Disable polling by setting the interval to 0.
-;
-; Default: 5
-poll-interval = 5
-; see "man date" for details on how to format the time string
-; NOTE: if you want to use syntax tags here you need to use %%{...}
-; Default: %H:%M:%S
-time-format = %H:%M
-
-; Available tags:
-;   <label-charging> (default)
-;   <bar-capacity>
-;   <ramp-capacity>
-;   <animation-charging>
-format-charging = 󱐋 <animation-charging>  <label-charging>
-
-; Available tags:
-;   <label-discharging> (default)
-;   <bar-capacity>
-;   <ramp-capacity>
-;   <animation-discharging>
-format-discharging = <ramp-capacity>  <label-discharging>
-
-; Available tags:
-;   <label-full> (default)
-;   <bar-capacity>
-;   <ramp-capacity>
-;format-full = <ramp-capacity> <label-full>
-
-; Format used when battery level drops to low-at
-; If not defined, format-discharging is used instead.
-; Available tags:
-;   <label-low>
-;   <animation-low>
-;   <bar-capacity>
-;   <ramp-capacity>
-; New in version 3.6.0
-;format-low = <label-low> <animation-low>
-
-; Available tokens:
-;   %percentage% (default) - is set to 100 if full-at is reached
-;   %percentage_raw%
-;   %time%
-;   %consumption% (shows current charge rate in watts)
-label-charging = %percentage%%
-
-; Available tokens:
-;   %percentage% (default) - is set to 100 if full-at is reached
-;   %percentage_raw%
-;   %time%
-;   %consumption% (shows current discharge rate in watts)
-label-discharging = %percentage%%
-
-; Available tokens:
-;   %percentage% (default) - is set to 100 if full-at is reached
-;   %percentage_raw%
-label-full = Fully charged
-
-; Available tokens:
-;   %percentage% (default) - is set to 100 if full-at is reached
-;   %percentage_raw%
-;   %time%
-;   %consumption% (shows current discharge rate in watts)
-; New in version 3.6.0
-label-low = BATTERY LOW
-
-; Only applies if <ramp-capacity> is used
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-
-; Only applies if <bar-capacity> is used
-bar-capacity-width = 10
-
-; Only applies if <animation-charging> is used
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-3 = 
-animation-charging-4 = 
-; Framerate in milliseconds
-animation-charging-framerate = 750
-
-; Only applies if <animation-discharging> is used
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-3 = 
-animation-discharging-4 = 
-; Framerate in milliseconds
-animation-discharging-framerate = 500
-
-; Only applies if <animation-low> is used
-; New in version 3.6.0
-animation-low-0 = !
-animation-low-1 = 
-animation-low-framerate = 200
-
-[module/battery2]
-type = internal/battery
 battery = BAT0
-adapter = AC
-full-at = 98
-
-format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
-
-format-discharging = <animation-discharging> <label-discharging>
-format-discharging-underline = ${self.format-charging-underline}
-
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
-
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
-
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
-
-animation-discharging-0 = 
-animation-discharging-1 = 
-animation-discharging-2 = 
-animation-discharging-foreground = ${colors.foreground-alt}
-animation-discharging-framerate = 750
+adapter = ADP0
+poll-interval = 5
+time-format = %H:%M
+format-charging =  <label-charging>
+format-discharging = <label-discharging>
+label-charging = %percentage%%
+label-discharging = %percentage%% %time%
 
 [module/temperature]
 type = internal/temperature
