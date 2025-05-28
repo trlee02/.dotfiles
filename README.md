@@ -32,3 +32,10 @@ This directory contains dotfiles for my personal setup.
     - [ ] polybar
     - [ ] alacritty
     - [ ] pulseaudio
+- [ ] setup sudo
+- [ ] setup bluetooth
+- [ ] setup network manager
+- [ ] setup zsh
+- [ ] setup ly
+- [ ] setup sway
+- [ ] setup waybar
