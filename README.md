@@ -45,4 +45,5 @@ This directory contains dotfiles for my personal setup.
         - [ ] grim
         - [ ] satty?
     - [ ] wl-clipboard
-- [ ] Update readme
+    - [ ] setup alacritty
+
