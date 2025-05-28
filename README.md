@@ -44,4 +44,5 @@ This directory contains dotfiles for my personal setup.
         - [ ] slurp
         - [ ] grim
         - [ ] satty?
+    - [ ] wl-clipboard
 - [ ] Update readme
