@@ -14,15 +14,10 @@ This directory contains dotfiles for my personal setup.
 2. Run `stow <directory>` to symlink the dotfiles to your home directory.
 
 ## TODO
-- [ ] Add installation script for dependencies.
-    - [ ] oh-my-zsh plugins
-- [ ] picom
 - [ ] Font installations
     - [ ] Blex mono nf
-    - [ ] meslo nf (p10k)
-- [ ] p10k config
+- [ ] bash prompt
 - [x] set background
-- [ ] Arch install scripts
 - [ ] nvim copilot
 - [ ] Arch packages
     - [ ] zoxide
@@ -32,10 +27,21 @@ This directory contains dotfiles for my personal setup.
     - [ ] polybar
     - [ ] alacritty
     - [ ] pulseaudio
-- [ ] setup sudo
-- [ ] setup bluetooth
-- [ ] setup network manager
-- [ ] setup zsh
-- [ ] setup ly
-- [ ] setup sway
-- [ ] setup waybar
+    - [ ] spotify
+- [ ] Arch setup
+    - [ ] setup sudo
+    - [ ] setup bluetooth
+    - [ ] setup network manager
+    - [ ] setup zsh
+    - [ ] setup ly
+    - [ ] setup sway
+    - [ ] setup waybar
+    - [ ] setup yay
+    - [ ] Audio setup
+    - [ ] setup fuzzel (menu)
+    - [ ] setup swaync (notifications)
+    - [ ] setup screenshots
+        - [ ] slurp
+        - [ ] grim
+        - [ ] satty?
+- [ ] Update readme
