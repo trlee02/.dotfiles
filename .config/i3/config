@@ -1,3 +1,4 @@
+
 set $mod Mod4
 
 font pango: BlexMono Nerd Font Mono 10
@@ -5,9 +6,8 @@ font pango: BlexMono Nerd Font Mono 10
 # BORDERS
 for_window [class="^.*"] border pixel 2
                           # class                 border  backgr. text   indicator child_border
-for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #285577
+for_window [class="^.*"] client.focused          #77dd77 #285577 #ffffff #2e9ef4   #f095f7
  # class                 border  backgr. text   indicator child_border
-client.focused          #77dd77 #285577 #ffffff #9e9ef4  #f095f7
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -22,18 +22,19 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id swaylock --transfer-sleep-lock -- swaylock --nofork
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
-
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym $mod+Shift+Period exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+Shift+Comma exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 bindsym $mod+Shift+u exec --no-startup-id brightnessctl set +5%
 bindsym $mod+Shift+d exec --no-startup-id brightnessctl set 5%-
@@ -51,7 +52,9 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec --no-startup-id "rofi -modi drun, run -show drun"
+# bindsym $mod+d exec --no-startup-id "rofi -modi drun, run -show drun"
+bindsym $mod+d exec --no-startup-id fuzzel
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -146,21 +149,22 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # move workspace between displays
-bindsym $mod+p move workspace to output next
+bindsym $mod+Shift+m move workspace to output HDMI-A-1
+bindsym $mod+Shift+s move workspace to output eDP-1
 
 
-assign [class="firefox"] $ws2
-assign [class="discord"] $ws3
-assign [class="Slack"] $ws3
-assign [class="obsidian"] $ws4
-assign [class="Spotify"] $ws10
+assign [app_id="firefox"] $ws2
+assign [app_id="discord"] $ws3
+assign [app_id="Slack"] $ws3
+assign [app_id="obsidian"] $ws4
+assign [app_id="spotify"] $ws10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'swaymsg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -190,31 +194,39 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 gaps inner 10
-gaps top 36
-exec_always feh --bg-fill "/home/$USER/.dotfiles/backgrounds/snow_dunes.jpg"
-exec_always --no-startup-id picom -b --backend glx
+output "*" bg "/home/$USER/.dotfiles/backgrounds/snow_dunes.jpg" fill
 
+# Notification Daemon
+exec_always --no-startup-id swaync
+
+# Toggle control center
+bindsym $mod+Shift+n exec swaync-client -t -sw
+
+
+# for flameshot
+# exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+# exec hash dbus-update-activation-environment 2>/dev/null && \
+#      dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK 
+#
+# for_window [app_id="flameshot"] border pixel 0, floating enable, fullscreen disable, move absolute position 0 0
 # Start polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
 
 # Screenshots
-bindsym Print exec --no-startup-id flameshot gui
+# bindsym Print exec --no-startup-id flameshot gui
+bindsym Print exec --no-startup-id grim -g "$(slurp)" - | wl-copy
+bindsym Shift+Print exec --no-startup-id grim -g "$(slurp)" - | satty -f -
+
 
 for_window [class="Arandr"] floating enable
 set $mode_display Config displays - Home both (b), laptop (l)
 set $path_display_laptop "$HOME/.config/i3/display_rivian_laptop_only.sh"
 set $path_display_home "$HOME/.config/i3/display_newton_both.sh"
 
-
-mode "$mode_display" {
-    bindsym l exec $path_display_laptop
-    bindsym b exec $path_display_home
-
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym $mod+Shift+x mode "$mode_display"
-}
-
-bindsym $mod+Shift+x mode "$mode_display"
+bar swaybar_command waybar
+output HDMI-A-1 pos 0 0
+input 1739:53208:SYNA2BA6:00_06CB:CFD8_Touchpad natural_scroll enabled
+input 1739:53208:SYNA2BA6:00_06CB:CFD8_Touchpad tap enabled
 
 # workspace $ws10 output eDP-1

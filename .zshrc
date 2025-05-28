@@ -1,57 +1,48 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+ZVM_INIT_MODE=sourcing
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
 
-#  Shows the zsh startup times
-# zmodload zsh/zprof
-export ZSH="$HOME/.oh-my-zsh"
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="false"
+# auto complete
+autoload -Uz compinit
+compinit
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' matcher-list '' 'r:|[._-]=**'
 
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+# Load Zsh's built-in Git info tool
+autoload -Uz vcs_info 
 
-export NVM_LAZY_LOAD=true
-export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim')
+precmd() {
+    vcs_info
+}
 
-plugins+=(
-  git
-  # zsh-syntax-highlighting
-  dirhistory
-  vi-mode
-)
+setopt prompt_subst  # Enable dynamic prompt substitution
 
-source $ZSH/oh-my-zsh.sh
+PROMPT=$'%F{189}%B%n%F{147}@%F{219}%m%f%b %F{15}%~%F{105}${vcs_info_msg_0_}%f 
+$ '
+
+
+# export NVM_LAZY_LOAD=true
+# export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim')
 
 setopt autocd extendedglob nomatch
 
 # eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
 
 export EDITOR='/usr/bin/nvim'
-
-# if nvim is built from source
-# export PATH="/home/tristan/Applications/nvim-linux64/bin:$PATH"
-# export PATH="$HOME/.local/bin:$PATH"
-
-alias sshcapstone="ssh capstone@172.22.0.1"
-alias sshpi="ssh tristan@10.243.153.59"
-alias sshjetson="ssh tristan@172.22.0.5"
-alias suggest="gh copilot suggest"
-alias sdn="shutdown now"
-
-# ZVM_KEYTIMEOUT=0.3
-
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# Set up fzf key bindings and fuzzy completion
+#
+# plugins
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+# source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-# source /home/tristan/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+# aliases
+alias sshpi="ssh tristan@10.243.153.59"
+alias sshjetson="ssh tristan@172.22.0.6"
+alias suggest="gh copilot suggest"
+alias sdn="shutdown now"
+alias code="code --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform-hint=auto --unity-launch"
+alias ls="ls --color"
