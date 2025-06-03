@@ -19,32 +19,29 @@ This directory contains dotfiles for my personal setup.
 - [ ] bash prompt
 - [x] set background
 - [ ] nvim copilot
-- [ ] Arch packages
-    - [ ] zoxide
-    - [ ] Zathura
-    - [ ] fzf
-    - [ ] ripgrep
-    - [ ] polybar
-    - [ ] alacritty
-    - [ ] pulseaudio
-    - [ ] spotify
-- [ ] Arch setup
-    - [ ] setup sudo
-    - [ ] setup bluetooth
-    - [ ] setup network manager
-    - [ ] setup zsh
-    - [ ] setup ly
-    - [ ] setup sway
-    - [ ] setup waybar
-    - [ ] setup yay
-    - [ ] Audio setup
-    - [ ] setup fuzzel (menu)
-    - [ ] setup swaync (notifications)
-        - [ ] libnotify 
-    - [ ] setup screenshots
-        - [ ] slurp
-        - [ ] grim
-        - [ ] satty?
-    - [ ] wl-clipboard
-    - [ ] setup alacritty
+- [ ] zoxide
+- [ ] Zathura
+- [ ] fzf
+- [ ] ripgrep
+- [ ] alacritty
+- [ ] pipewire
+- [ ] spotify
+- [ ] setup sudo
+- [ ] setup bluetooth
+- [ ] setup network manager
+- [ ] setup zsh
+- [ ] setup ly
+- [ ] setup sway
+- [ ] setup waybar
+- [ ] setup yay
+- [ ] Audio setup
+- [ ] setup fuzzel (menu)
+- [ ] setup swaync (notifications)
+    - [ ] libnotify 
+- [ ] setup screenshots
+    - [ ] slurp
+    - [ ] grim
+    - [ ] satty?
+- [ ] wl-clipboard
+- [ ] setup alacritty
 
