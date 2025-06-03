@@ -40,6 +40,7 @@ This directory contains dotfiles for my personal setup.
     - [ ] Audio setup
     - [ ] setup fuzzel (menu)
     - [ ] setup swaync (notifications)
+        - [ ] libnotify 
     - [ ] setup screenshots
         - [ ] slurp
         - [ ] grim
